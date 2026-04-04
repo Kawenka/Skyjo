@@ -1,7 +1,10 @@
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Window/VideoMode.hpp>
+#include "Game.hpp"
 
 int main(void) { 
-  sf::RenderWindow window(sf::VideoMode(800, 600), "Skyjo");
+  Game myGame(3);
+
+  myGame.dealCards();
+  myGame.initialReveal();
+
+  return 0;
 }
