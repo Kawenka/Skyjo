@@ -7,22 +7,25 @@
 
 class Player {
 private:
-  std::vector<Card> _grid; // Player's cards
+  std::vector<Card> _grid; // Player's Cards
   int _score;
   std::string _name;
 
-  bool isVisible(const Card &card) const; // Checking if a card is visible.
+  bool isvisible(const Card &Card) const; // checking if a Card is visible.
 
 public:
-  // OCC
+  // occ
   Player();
   Player( std::string name );
   Player( const Player &other );
   Player &operator=( const Player &other );
   ~Player();
 
-  void checkColumn(); // Checking if 3 identical cards in a column should be discarded .
-  bool isGridRevealed() const; // Checking if all cards are revealed.
+  void addCardtogrid( const Card &Card );
+  Card swapCard( int index, const Card &newCard );
+
+  void checkcolumn(); // checking if 3 identical Cards in a column should be disCarded .
+  bool isgridrevealed() const; // checking if all Cards are revealed.
 };
 
 #endif
