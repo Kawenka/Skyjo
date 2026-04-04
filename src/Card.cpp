@@ -17,9 +17,7 @@ Card &Card::operator=(const Card &other)
 
 Card::~Card() {}
 
-void Card::setVisible(bool value) {
-  this->_isVisible = value;
-}
+void Card::setVisible(bool value) { this->_isVisible = value; }
 
 int Card::getValue() const { return this->_value; }
 bool Card::isVisible() const { return this->_isVisible; }
