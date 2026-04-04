@@ -53,3 +53,14 @@ void Player::revealCard(int index) {
     this->_grid[index].setVisible(true);
   }
 }
+
+int Player::getVisibleScore() const {
+  int sum = 0;
+
+  for (const auto& card: this->_grid) {
+    if (card.isVisible()) {
+      sum += card.getValue();
+    }
+  }
+  return sum;
+}
