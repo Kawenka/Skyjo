@@ -64,3 +64,44 @@ int Player::getVisibleScore() const {
   }
   return sum;
 }
+
+Card Player::swapCard(int index, const Card &newCard) {
+  if (index < 0 || index >= (int)this->_grid.size()) {
+    return Card();
+  }
+  
+  // Get the old card to return it to the game for discard.
+  Card oldCard = this->_grid[index];
+
+  // Replace with new card and make it visible.
+  this->_grid[index] = newCard;
+  this->_grid[index].setVisible(true);
+
+  // The old card must be visible when in the discard pile.
+  oldCard.setVisible(true);
+
+  return oldCard;
+}
+
+void Player::checkColumn() {
+  for (int col = 0; col < 4; col++) {
+    int idx1 = col; // Top row
+    int idx2 = col + 4; // Middel row
+    int idx3 = col + 8; // Jacques row
+
+    // Check if all three cards are revealed.
+    if (this->_grid[idx1].isVisible() && this->_grid[idx2].isVisible()
+      && this->_grid[idx3].isVisible()) {
+
+      // Check if they all have the same value.
+      if (this->_grid[idx1].getValue() == this->_grid[idx2].getValue()
+        && this->_grid[idx2].getValue() == this->_grid[idx3].getValue()) {
+        std::cout << GREEN << "Column " << col << " cleared." << RESET << std::endl;
+ 
+        this->_grid[idx1] = Card(0);
+        this->_grid[idx2] = Card(0);
+        this->_grid[idx3] = Card(0);
+      }
+    }
+  }
+}

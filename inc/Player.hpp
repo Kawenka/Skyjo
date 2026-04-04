@@ -21,11 +21,12 @@ public:
   Player &operator=( const Player &other );
   ~Player();
 
+  // Swapping cards and returns the old one.
   Card swapCard( int index, const Card &newCard );
   void addCardToGrid( const Card &card );
 
-  void checkcolumn(); // Checking if 3 identical Cards in a column should be disCarded.
-  bool isgridrevealed() const; // Checking if all Cards are revealed.
+  void checkColumn(); // Checking if 3 identical Cards in a column should be disCarded.
+  bool isGridRevealed() const; // Checking if all Cards are revealed.
 
   // Getters 
   int getVisibleScore() const;
