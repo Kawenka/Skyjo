@@ -7,5 +7,8 @@ int main(void) {
   myGame.initialReveal();
   myGame.determineFirstPlayer();
 
+  while (true) {
+    myGame.playTurn();
+  }
   return 0;
 }
