@@ -47,3 +47,9 @@ void Player::display() const {
     std::cout << std::endl;
   }
 }
+
+void Player::revealCard(int index) {
+  if (index >= 0 && index < (int)this->_grid.size()) {
+    this->_grid[index].setVisible(true);
+  }
+}

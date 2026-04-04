@@ -29,6 +29,7 @@ public:
   
   // DEBUG
   void display() const;
+  void revealCard( int index );
 };
 
 #endif
