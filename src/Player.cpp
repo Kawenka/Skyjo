@@ -57,10 +57,21 @@ void Player::revealCard(int index) {
 int Player::getVisibleScore() const {
   int sum = 0;
 
-  for (const auto& card: this->_grid) {
+  for (const auto &card: this->_grid) {
     if (card.isVisible()) {
       sum += card.getValue();
     }
+  }
+  return sum;
+}
+
+int Player::getFinalScore() {
+  int sum = 0;
+
+  for (auto &card : this->_grid) {
+    // Last turn, we count hidden cards as well.
+    card.setVisible(true);
+    sum += card.getValue();
   }
   return sum;
 }
@@ -104,4 +115,13 @@ void Player::checkColumn() {
       }
     }
   }
+}
+
+bool Player::isGridRevealed() const {
+  for (const auto &card : this->_grid) {
+    if (!card.isVisible()) {
+      return false;
+    }
+  }
+  return true;
 }

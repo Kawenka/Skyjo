@@ -30,6 +30,7 @@ public:
 
   // Getters 
   int getVisibleScore() const;
+  int getFinalScore();
 
   // DEBUG
   void display() const;
