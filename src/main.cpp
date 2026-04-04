@@ -1,4 +1,6 @@
+#include "Colors.hpp"
 #include "Game.hpp"
+#include <iostream>
 
 int main(void) { 
   Game myGame(3);
@@ -7,8 +9,12 @@ int main(void) {
   myGame.initialReveal();
   myGame.determineFirstPlayer();
 
-  while (true) {
+  while (!myGame.isGameOver()) {
     myGame.playTurn();
   }
+
+  std::cout << YELLOW;
+  std::cout << "Someone finished, last round !" << RESET << std::endl;
+  myGame.displayFinalScores();
   return 0;
 }

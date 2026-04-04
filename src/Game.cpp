@@ -153,3 +153,23 @@ void Game::playTurn() {
     
     std::cout << "Turn finished!" << std::endl << std::endl;
 }
+
+bool Game::isGameOver() const {
+  for (const auto &player : this->_players) {
+    if (player.isGridRevealed()) {
+      return true;
+    }
+  }
+  return false;
+}
+
+void Game::displayFinalScores() {
+  std::cout << YELLOW <<  std::endl;
+  std::cout << "--- Final scores ---" << RESET << std::endl;
+
+  for (size_t i = 0; i < this->_players.size(); i++) {
+    int score = this->_players[i].getFinalScore();
+    std::cout << "Player " << i + 1 << ": " << score << " points" << std::endl;
+    this->_players[i].display();
+  }
+}

@@ -19,6 +19,8 @@ public:
   void dealCards();
   void playTurn();
   void determineFirstPlayer();
+  bool isGameOver() const;
+  void displayFinalScores();
 
   // DEBUG
   void printState() const;
