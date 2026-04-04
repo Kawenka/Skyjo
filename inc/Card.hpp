@@ -13,6 +13,10 @@ public:
   ~Card();
 
   void setVisible(bool value);
+
+  // Getters
+  int getValue() const;
+  bool isVisible() const;
 };
 
 #endif
