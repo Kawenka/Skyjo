@@ -11,6 +11,8 @@ public:
   Card( const Card &other );
   Card &operator=( const Card &other );
   ~Card();
+
+  void setVisible(bool value);
 };
 
 #endif
