@@ -26,6 +26,9 @@ public:
 
   void checkcolumn(); // Checking if 3 identical Cards in a column should be disCarded.
   bool isgridrevealed() const; // Checking if all Cards are revealed.
+  
+  // DEBUG
+  void display() const;
 };
 
 #endif
