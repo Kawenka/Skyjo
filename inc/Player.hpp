@@ -22,6 +22,7 @@ public:
   ~Player();
 
   Card swapCard( int index, const Card &newCard );
+  void addCardToGrid( const Card &card );
 
   void checkcolumn(); // Checking if 3 identical Cards in a column should be disCarded.
   bool isgridrevealed() const; // Checking if all Cards are revealed.

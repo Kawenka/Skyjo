@@ -19,3 +19,6 @@ Player &Player::operator=(const Player& other) {
   return *this;
 }
 
+void Player::addCardToGrid(const Card &card) {
+  this->_grid.push_back(card);
+}
