@@ -19,7 +19,7 @@ SRCS        = $(SRCS_PATH)main.cpp\
 OBJS        = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 CXX         = c++
-CXXFLAGS    = -Wall -Wextra -Werror -std=c++98 -I inc
+CXXFLAGS    = -Wall -Wextra -Werror -std=c++11 -I inc
 LDLIBS      = -lsfml-graphics -lsfml-window -lsfml-system
 
 all: $(NAME)
