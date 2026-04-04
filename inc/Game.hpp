@@ -22,6 +22,7 @@ public:
   // DEBUG
   void printState() const;
   void printAllPlayers() const;
+  void initialReveal();
 };
 
 #endif

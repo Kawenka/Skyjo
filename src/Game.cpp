@@ -50,3 +50,23 @@ void Game::printAllPlayers() const {
     std::cout << std::endl;
   }
 }
+
+void Game::initialReveal() {
+  for (size_t i = 0; i < this->_players.size(); i++) {
+    this->_players[i].display();
+
+    std::cout << std::endl;
+    std::cout << "--- Initial Reveal for Player " << i + 1 << " ---";
+    std::cout << std::endl;
+
+    for (int count = 0; count < 2; count++) {
+      int choice;
+      std::cout << "Choose card #" << count + 1 << " to reveal (0-11): ";
+      std::cin >> choice;
+      
+      if (choice >= 0 && choice <= 11)
+          this->_players[i].revealCard(choice);
+    }
+  }
+  this->printAllPlayers();
+}
