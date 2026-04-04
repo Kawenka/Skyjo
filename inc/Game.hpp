@@ -18,6 +18,10 @@ public:
 
   void dealCards();
   void playTurn();
+
+  // DEBUG
+  void printState() const;
+  void printAllPlayers() const;
 };
 
 #endif
