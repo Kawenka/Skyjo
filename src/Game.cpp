@@ -70,3 +70,20 @@ void Game::initialReveal() {
   }
   this->printAllPlayers();
 }
+
+void Game::determineFirstPlayer() {
+  int maxScore = -5;
+  int startingPlayer = 0;
+  
+  for (size_t i = 0; i < this->_players.size(); i++) {
+    int currentScore = this->_players[i].getVisibleScore();
+
+    if (currentScore > maxScore) {
+      maxScore = currentScore;
+      startingPlayer = i;
+    }
+  }
+  
+  this->_currentPlayerIndex = startingPlayer;
+  std::cout << GREEN << "Player " << this->_currentPlayerIndex + 1 << " starts the game" << RESET << std::endl;
+}

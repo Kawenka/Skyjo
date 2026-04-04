@@ -5,6 +5,7 @@ int main(void) {
 
   myGame.dealCards();
   myGame.initialReveal();
+  myGame.determineFirstPlayer();
 
   return 0;
 }

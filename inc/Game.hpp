@@ -18,6 +18,7 @@ public:
 
   void dealCards();
   void playTurn();
+  void determineFirstPlayer();
 
   // DEBUG
   void printState() const;
