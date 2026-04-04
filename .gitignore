@@ -1,0 +1,8 @@
+# Fichiers compilés
+objs/
+test
+jeu_skyjo
+
+# Fichiers Neovim / LSP
+compile_commands.json
+.cache/
