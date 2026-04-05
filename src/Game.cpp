@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "Colors.hpp"
+#include "Player.hpp"
 #include <cstddef>
 #include <iostream>
 
@@ -173,3 +174,5 @@ void Game::displayFinalScores() {
     this->_players[i].display();
   }
 }
+
+Player &Game::getPlayer(int index) { return this->_players[index]; }

@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Card.hpp"
 #include "Colors.hpp"
 #include <iomanip>
 #include <iostream>
@@ -76,6 +77,9 @@ int Player::getFinalScore() {
   return sum;
 }
 
+const std::vector<Card> &Player::getGrid() const { return this->_grid; }
+std::vector<Card> &Player::getGrid() { return this->_grid; }
+
 Card Player::swapCard(int index, const Card &newCard) {
   if (index < 0 || index >= (int)this->_grid.size()) {
     return Card();
@@ -124,4 +128,17 @@ bool Player::isGridRevealed() const {
     }
   }
   return true;
+}
+
+void updateGrid( std::vector<sf::Sprite> &sprites, Player &player, AssetManager &assets) {
+    auto &cards = player.getGrid();
+
+    for (int i = 0; i < 12; ++i) {
+        if (cards[i].isVisible()) {
+            sprites[i].setTexture(assets.getTexture(cards[i].getValue()));
+        }
+        else {
+            sprites[i].setTexture(assets.getTexture(-3));
+        }
+    }
 }
