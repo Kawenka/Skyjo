@@ -14,7 +14,8 @@ SRCS        = $(SRCS_PATH)main.cpp\
 							$(SRCS_PATH)Card.cpp\
 							$(SRCS_PATH)Deck.cpp\
 							$(SRCS_PATH)Game.cpp\
-							$(SRCS_PATH)Player.cpp
+							$(SRCS_PATH)Player.cpp\
+							$(SRCS_PATH)AssetManager.cpp
 
 OBJS        = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
