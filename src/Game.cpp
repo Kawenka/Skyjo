@@ -35,14 +35,14 @@ void Game::dealCards() {
 }
 
 void Game::printState() const {
-    std::cout << GREEN << "--- SKYJO GAME STATE ---" << RESET << std::endl;
-    
-    std::cout << "Discard Pile: [ " << _deck.getTopDiscard().getValue() << " ]" << std::endl;
-    
-    for (size_t i = 0; i < _players.size(); i++) {
-        std::cout << "Player: " << " (Score: " << "0" << ")" << std::endl;
-    }
-    std::cout << "------------------------" << std::endl;
+  std::cout << GREEN << "--- SKYJO GAME STATE ---" << RESET << std::endl;
+  
+  std::cout << "Discard Pile: [ " << _deck.getTopDiscard().getValue() << " ]" << std::endl;
+  
+  for (size_t i = 0; i < _players.size(); i++) {
+    std::cout << "Player: " << " (Score: " << "0" << ")" << std::endl;
+  }
+  std::cout << "------------------------" << std::endl;
 }
 
 void Game::printAllPlayers() const {
@@ -66,7 +66,7 @@ void Game::initialReveal() {
       std::cin >> choice;
       
       if (choice >= 0 && choice <= 11)
-          this->_players[i].revealCard(choice);
+        this->_players[i].revealCard(choice);
     }
   }
   this->printAllPlayers();
@@ -93,66 +93,66 @@ void Game::determineFirstPlayer() {
 #include <iostream>
 
 void Game::playTurn() {
-    Player& currentPlayer = _players[_currentPlayerIndex];
+  Player& currentPlayer = _players[_currentPlayerIndex];
+  
+  std::cout << GREEN << "It's Player " << _currentPlayerIndex + 1 << "'s turn."
+    << std::endl;
+  currentPlayer.display();
+  
+  std::cout << std::endl;
+  std::cout << "Top of discard pile: [ " << _deck.getTopDiscard().getValue() << " ]"
+    << std::endl;
+
+  char choice;
+  std::cout << "Draw from Deck (d) or Take from Discard (s)? ";
+  std::cin >> choice;
+
+  if (choice == 's') {
+    // Draw from discard.
+    Card drawn = _deck.drawFromDiscard();
     
-    std::cout << GREEN << "It's Player " << _currentPlayerIndex + 1 << "'s turn."
-      << std::endl;
-    currentPlayer.display();
-    
-    std::cout << std::endl;
-    std::cout << "Top of discard pile: [ " << _deck.getTopDiscard().getValue() << " ]"
-      << std::endl;
+    int index;
+    std::cout << "You took [ " << drawn.getValue() << " ]. Choose index to swap (0-11): ";
+    std::cin >> index;
 
-    char choice;
-    std::cout << "Draw from Deck (d) or Take from Discard (s)? ";
-    std::cin >> choice;
+    // Swap and send old card to discard.
+    _deck.addToDiscard(currentPlayer.swapCard(index, drawn));
+  } 
+  else {
+    // Draw from deck.
+    Card drawn = _deck.drawFromDeck();
+    std::cout << "You drew a [ " << drawn.getValue() << " ]." << std::endl;
 
-    if (choice == 's') {
-        // Draw from discard
-        Card drawn = _deck.drawFromDiscard();
-        
-        int index;
-        std::cout << "You took [ " << drawn.getValue() << " ]. Choose index to swap (0-11): ";
-        std::cin >> index;
+    char action;
+    std::cout << "Keep and swap (k) or Throw to discard (t)? ";
+    std::cin >> action;
 
-        // Swap and send old card to discard
-        _deck.addToDiscard(currentPlayer.swapCard(index, drawn));
-    } 
-    else {
-        // Draw from deck
-        Card drawn = _deck.drawFromDeck();
-        std::cout << "You drew a [ " << drawn.getValue() << " ]." << std::endl;
-
-        char action;
-        std::cout << "Keep and swap (k) or Throw to discard (t)? ";
-        std::cin >> action;
-
-        if (action == 'k') {
-            int index;
-            std::cout << "Choose index to swap (0-11): ";
-            std::cin >> index;
-            _deck.addToDiscard(currentPlayer.swapCard(index, drawn));
-        }
-        else {
-            // Throw drawn card away
-            _deck.addToDiscard(drawn);
-            
-            // Reveal one hidden card from the grid
-            int idx;
-            std::cout << "Card discarded. Choose a hidden card to reveal (0-11): ";
-            std::cin >> idx;
-            currentPlayer.revealCard(idx);
-        }
+    if (action == 'k') {
+      int index;
+      std::cout << "Choose index to swap (0-11): ";
+      std::cin >> index;
+      _deck.addToDiscard(currentPlayer.swapCard(index, drawn));
     }
+    else {
+      // Throw drawn card away.
+      _deck.addToDiscard(drawn);
+      
+      // Reveal one hidden card from the grid.
+      int idx;
+      std::cout << "Card discarded. Choose a hidden card to reveal (0-11): ";
+      std::cin >> idx;
+      currentPlayer.revealCard(idx);
+    }
+  }
 
-    // End of turn
-    // Check for identical columns
-    currentPlayer.checkColumn();
-    
-    // Move to next player
-    _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.size();
-    
-    std::cout << "Turn finished!" << std::endl << std::endl;
+  // End of turn.
+  // Check for identical columns.
+  currentPlayer.checkColumn();
+  
+  // Move to next player.
+  _currentPlayerIndex = (_currentPlayerIndex + 1) % _players.size();
+  
+  std::cout << "Turn finished!" << std::endl << std::endl;
 }
 
 bool Game::isGameOver() const {

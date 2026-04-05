@@ -100,9 +100,9 @@ Card Player::swapCard(int index, const Card &newCard) {
 
 void Player::checkColumn() {
   for (int col = 0; col < 4; col++) {
-    int idx1 = col; // Top row
-    int idx2 = col + 4; // Middel row
-    int idx3 = col + 8; // Jacques row
+    int idx1 = col; // Top row.
+    int idx2 = col + 4; // Middel row.
+    int idx3 = col + 8; // Jacques row.
 
     // Check if all three cards are revealed.
     if (this->_grid[idx1].isVisible() && this->_grid[idx2].isVisible()
@@ -131,14 +131,14 @@ bool Player::isGridRevealed() const {
 }
 
 void updateGrid( std::vector<sf::Sprite> &sprites, Player &player, AssetManager &assets) {
-    auto &cards = player.getGrid();
+  auto &cards = player.getGrid();
 
-    for (int i = 0; i < 12; ++i) {
-        if (cards[i].isVisible()) {
-            sprites[i].setTexture(assets.getTexture(cards[i].getValue()));
-        }
-        else {
-            sprites[i].setTexture(assets.getTexture(-3));
-        }
+  for (int i = 0; i < 12; ++i) {
+    if (cards[i].isVisible()) {
+      sprites[i].setTexture(assets.getTexture(cards[i].getValue()));
     }
+    else {
+      sprites[i].setTexture(assets.getTexture(-3));
+    }
+  }
 }
